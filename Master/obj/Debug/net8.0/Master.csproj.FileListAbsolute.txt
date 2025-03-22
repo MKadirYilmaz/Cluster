@@ -1,0 +1,14 @@
+C:\Projects\Networking\Cluster\Master\bin\Debug\net8.0\Master.exe
+C:\Projects\Networking\Cluster\Master\bin\Debug\net8.0\Master.deps.json
+C:\Projects\Networking\Cluster\Master\bin\Debug\net8.0\Master.runtimeconfig.json
+C:\Projects\Networking\Cluster\Master\bin\Debug\net8.0\Master.dll
+C:\Projects\Networking\Cluster\Master\bin\Debug\net8.0\Master.pdb
+C:\Projects\Networking\Cluster\Master\obj\Debug\net8.0\Master.GeneratedMSBuildEditorConfig.editorconfig
+C:\Projects\Networking\Cluster\Master\obj\Debug\net8.0\Master.AssemblyInfoInputs.cache
+C:\Projects\Networking\Cluster\Master\obj\Debug\net8.0\Master.AssemblyInfo.cs
+C:\Projects\Networking\Cluster\Master\obj\Debug\net8.0\Master.csproj.CoreCompileInputs.cache
+C:\Projects\Networking\Cluster\Master\obj\Debug\net8.0\Master.dll
+C:\Projects\Networking\Cluster\Master\obj\Debug\net8.0\refint\Master.dll
+C:\Projects\Networking\Cluster\Master\obj\Debug\net8.0\Master.pdb
+C:\Projects\Networking\Cluster\Master\obj\Debug\net8.0\Master.genruntimeconfig.cache
+C:\Projects\Networking\Cluster\Master\obj\Debug\net8.0\ref\Master.dll

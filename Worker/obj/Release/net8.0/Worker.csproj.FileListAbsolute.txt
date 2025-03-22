@@ -1,0 +1,14 @@
+C:\Projects\Networking\Cluster\Worker\bin\Release\net8.0\Worker.exe
+C:\Projects\Networking\Cluster\Worker\bin\Release\net8.0\Worker.deps.json
+C:\Projects\Networking\Cluster\Worker\bin\Release\net8.0\Worker.runtimeconfig.json
+C:\Projects\Networking\Cluster\Worker\bin\Release\net8.0\Worker.dll
+C:\Projects\Networking\Cluster\Worker\bin\Release\net8.0\Worker.pdb
+C:\Projects\Networking\Cluster\Worker\obj\Release\net8.0\Worker.GeneratedMSBuildEditorConfig.editorconfig
+C:\Projects\Networking\Cluster\Worker\obj\Release\net8.0\Worker.AssemblyInfoInputs.cache
+C:\Projects\Networking\Cluster\Worker\obj\Release\net8.0\Worker.AssemblyInfo.cs
+C:\Projects\Networking\Cluster\Worker\obj\Release\net8.0\Worker.csproj.CoreCompileInputs.cache
+C:\Projects\Networking\Cluster\Worker\obj\Release\net8.0\Worker.dll
+C:\Projects\Networking\Cluster\Worker\obj\Release\net8.0\refint\Worker.dll
+C:\Projects\Networking\Cluster\Worker\obj\Release\net8.0\Worker.pdb
+C:\Projects\Networking\Cluster\Worker\obj\Release\net8.0\Worker.genruntimeconfig.cache
+C:\Projects\Networking\Cluster\Worker\obj\Release\net8.0\ref\Worker.dll
