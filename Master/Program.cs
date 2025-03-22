@@ -7,8 +7,8 @@ using System.Collections.Concurrent;
 
 class MasterNode
 {
-    static string currentWord = "00000000"; // 8 haneli brute force başlangıç kelimesi
-    static object lockObj = new object(); // Thread-safe erişim kontrolü
+    static string currentWord = "00000000";
+    static object lockObj = new object();
     static bool found = false;
     static ConcurrentDictionary<string, int> workerStats = new ConcurrentDictionary<string, int>();
 
@@ -18,9 +18,8 @@ class MasterNode
     {
         TcpListener server = new TcpListener(IPAddress.Any, 5000);
         server.Start();
-        Console.WriteLine("Master başlatıldı. Worker cihazlar bekleniyor...");
+        Console.WriteLine("Coordinator started. Waiting for workers...");
 
-        // Worker istatistiklerini gösterecek bir thread başlat
         Thread statThread = new Thread(PrintWorkerStats);
         statThread.Start();
 
@@ -28,15 +27,15 @@ class MasterNode
         {
             TcpClient client = server.AcceptTcpClient();
             string workerIP = client.Client.RemoteEndPoint.ToString();
-            workerStats[workerIP] = 0; // Yeni worker ekleniyor
-            Console.WriteLine($"Yeni Worker bağlandı: {workerIP}");
+            workerStats[workerIP] = 0;
+            Console.WriteLine($"New worker connected: {workerIP}");
 
             Thread workerThread = new Thread(() => HandleWorker(client, workerIP));
             workerThread.Start();
         }
 
         server.Stop();
-        Console.WriteLine("Master kapatıldı.");
+        Console.WriteLine("Coordinator closed");
     }
 
     static void HandleWorker(TcpClient client, string workerIP)
@@ -46,7 +45,7 @@ class MasterNode
         // İlk bağlantıda workerlara şifreyi gönder
         byte[] passData = Encoding.UTF8.GetBytes("SECRET:" + secretPassword);
         stream.Write(passData, 0, passData.Length);
-        Console.WriteLine($"Sifre workera gonderildi: {workerIP}");
+        Console.WriteLine($"Password sent to worker: {workerIP}");
         while (!found)
         {
             string word;
@@ -65,13 +64,13 @@ class MasterNode
 
             if (response.StartsWith("FOUND:"))
             {
-                Console.WriteLine("Şifre bulundu: " + response.Substring(6));
+                Console.WriteLine("Password found: " + response.Substring(6));
                 found = true;
                 break;
             }
             else
             {
-                workerStats[workerIP]++; // Worker başına deneme sayısını artır
+                workerStats[workerIP]++;
             }
         }
         client.Close();
@@ -81,13 +80,13 @@ class MasterNode
     {
         while (!found)
         {
-            Thread.Sleep(1000); // Her saniye bir rapor yayınla
+            Thread.Sleep(1000);
 
-            Console.WriteLine("\n--- Worker Performans Raporu ---");
+            Console.WriteLine("\n--- Worker Performance Report ---");
             foreach (var worker in workerStats)
             {
-                Console.WriteLine($"Worker {worker.Key} -> {worker.Value} kelime denedi.");
-                workerStats[worker.Key] = 0; // Sayaç sıfırlanıyor
+                Console.WriteLine($"Worker {worker.Key} -> {worker.Value} word(s)/sec");
+                workerStats[worker.Key] = 0;
             }
         }
     }
@@ -96,6 +95,6 @@ class MasterNode
     {
         int number = int.Parse(word);
         number++;
-        return number.ToString("D8"); // 8 haneli format
+        return number.ToString("D8");
     }
 }

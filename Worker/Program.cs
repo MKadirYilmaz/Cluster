@@ -5,14 +5,14 @@ using System.Threading;
 
 class WorkerNode
 {
-    static string password;
+    static string password = "";
     static void Main()
     {
         Console.WriteLine("Enter coordinator IP Address: ");
         string ipAddress = Console.ReadLine();
         try
         {
-            TcpClient client = new TcpClient(ipAddress, 5000); // Master IP
+            TcpClient client = new TcpClient(ipAddress, 5000);
             NetworkStream stream = client.GetStream();
 
             // İlk mesajda şifreyi al
@@ -22,22 +22,21 @@ class WorkerNode
             if (firstMessage.StartsWith("SECRET:"))
             {
                 password = firstMessage.Substring(7);
-                Console.WriteLine("Şifre alındı! Denemeler başlıyor...");
+                Console.WriteLine("Password received! Starting attempts");
             }
 
             while (true)
             {
                 buffer = new byte[256];
                 bytesRead = stream.Read(buffer, 0, buffer.Length);
-                if (bytesRead == 0) break; // Bağlantı koptuysa çık
+                if (bytesRead == 0) break;
 
                 string attempt = Encoding.UTF8.GetString(buffer, 0, bytesRead);
-                Console.WriteLine("Deniyorum: " + attempt + " Asil sifre: " + password);
-                //Thread.Sleep(1000);
+                Console.WriteLine("Trying: " + attempt);
 
                 if (BruteForceAttempt(attempt))
                 {
-                    Console.WriteLine("Şifre bulundu: " + attempt);
+                    Console.WriteLine("Password found: " + attempt);
                     byte[] foundMessage = Encoding.UTF8.GetBytes("FOUND:" + attempt);
                     stream.Write(foundMessage, 0, foundMessage.Length);
                     break;
@@ -59,7 +58,6 @@ class WorkerNode
 
     static bool BruteForceAttempt(string attempt)
     {
-        // Örnek: Gerçek şifreyi "12345678" olarak kabul ediyoruz
         return attempt == password;
     }
 }
